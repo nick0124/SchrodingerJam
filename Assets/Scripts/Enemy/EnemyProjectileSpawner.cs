@@ -6,10 +6,19 @@ public class EnemyProjectileSpawner : MonoBehaviour
     [SerializeField] private float _shootingRate = 1;
     [SerializeField] private float _projectileSpeed = 10;
     [SerializeField] private float _projectileLifetime = 20;
+    public bool Emit { get; set; }
 
-    void Start()
+    void Update()
     {
-        InvokeRepeating(nameof(SpawnProjectile), _shootingRate, _shootingRate);
+        if (Emit)
+        {
+            if (!IsInvoking(nameof(SpawnProjectile)))
+                InvokeRepeating(nameof(SpawnProjectile), 0, _shootingRate);
+        }
+        else
+        {
+            CancelInvoke();
+        }
     }
 
     private void SpawnProjectile()

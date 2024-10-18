@@ -5,12 +5,13 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] private Transform _player;
-    [SerializeField] private LayerMask _whatisGround, _whatIsPlayer;
+    [SerializeField] private LayerMask _whatIsPlayer;
     private NavMeshAgent _agent;
+
+    [SerializeField] private Transform[] _waypoints;
 
     private Vector3 _destinationPoint;
     private bool _destinationPointIsSet;
-    [SerializeField] private float _walkPointRange = 10;
 
     [SerializeField] private float _detectionRange, _stopRange = 10;
 
@@ -42,7 +43,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (!_destinationPointIsSet)
         {
-            FindNextDestanationPoint();
+            RandomWaypoint();
         }
 
         if (_destinationPointIsSet)
@@ -58,17 +59,11 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void FindNextDestanationPoint()
+    private void RandomWaypoint()
     {
-        float randomZ = Random.Range(-_walkPointRange, _walkPointRange);
-        float randomX = Random.Range(-_walkPointRange, _walkPointRange);
-
-        _destinationPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-
-        if (Physics.Raycast(_destinationPoint, -transform.up, 2f, _whatisGround))
-        {
-            _destinationPointIsSet = true;
-        }
+        Vector3 currentWaypoint = _waypoints[Random.Range(0, _waypoints.Length)].position;
+        _destinationPoint = new Vector3(currentWaypoint.x, transform.position.y, currentWaypoint.z);
+        _destinationPointIsSet = true;
     }
 
     private void ChasePlayer()
