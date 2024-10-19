@@ -7,6 +7,14 @@ public class LoadScene : MonoBehaviour
 {
     [SerializeField] private int _sceneNumber;
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     public void Load(){
         SceneManager.LoadScene(_sceneNumber);
     }

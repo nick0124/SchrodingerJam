@@ -28,6 +28,11 @@ public class GameController : MonoBehaviour
         if(enemyCounter <= 0){
             LoadWin();
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void LoadFalure(){
