@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerProjectileSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _particleprefab;
+    [SerializeField] private GameObject _projectilePrefab;
     [SerializeField] private float _shootingRate = 1;
     [SerializeField] private float _projectileSpeed = 10;
     [SerializeField] private float _projectileLifetime = 10;
@@ -26,7 +26,7 @@ public class PlayerProjectileSpawner : MonoBehaviour
 
     private void SpawnProjectile()
     {
-        GameObject instance = Instantiate(_particleprefab, transform.position, transform.rotation, null);
+        GameObject instance = Instantiate(_projectilePrefab, transform.position, transform.rotation, null);
         Destroy(instance, _projectileLifetime);
         Rigidbody instanceRb = instance.GetComponent<Rigidbody>();
         instanceRb.velocity = transform.forward * _projectileSpeed;
