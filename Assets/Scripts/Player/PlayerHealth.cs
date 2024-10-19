@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] private GameController _gameController;
+
     [SerializeField] int _health;
     private int _currentHealth;
 
@@ -26,6 +28,7 @@ public class PlayerHealth : MonoBehaviour
             if (_deathTimer < 0)
             {
                 //endgame code here
+                _gameController.LoadFalure();
                 Debug.Log("endgame");
             }
         }
