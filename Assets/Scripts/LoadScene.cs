@@ -15,7 +15,13 @@ public class LoadScene : MonoBehaviour
         }
     }
 
-    public void Load(){
+    public void Load()
+    {
         SceneManager.LoadScene(_sceneNumber);
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
