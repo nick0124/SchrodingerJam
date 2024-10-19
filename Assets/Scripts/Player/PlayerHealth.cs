@@ -4,12 +4,12 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] int _health;
-    public int _currentHealth;
+    private int _currentHealth;
 
     [SerializeField] private GameObject _deathTimeTextContainer;
     [SerializeField] private TMP_Text _deathTimeText;
     [SerializeField] private float _deathTime = 5;
-    public float _deathTimer;
+    private float _deathTimer;
 
     void Start(){
         _currentHealth = _health;
