@@ -5,7 +5,7 @@ public class EnemyProjectileSpawner : MonoBehaviour
     [SerializeField] private GameObject _particleprefab;
     [SerializeField] private float _shootingRate = 1;
     [SerializeField] private float _projectileSpeed = 10;
-    [SerializeField] private float _projectileLifetime = 20;
+    [SerializeField] private float _projectileLifetime = 10;
     public bool Emit { get; set; }
 
     void Update()

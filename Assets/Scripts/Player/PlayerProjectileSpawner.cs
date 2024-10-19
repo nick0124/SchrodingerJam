@@ -7,34 +7,20 @@ public class PlayerProjectileSpawner : MonoBehaviour
     [SerializeField] private GameObject _particleprefab;
     [SerializeField] private float _shootingRate = 1;
     [SerializeField] private float _projectileSpeed = 10;
-    [SerializeField] private float _projectileLifetime = 20;
-    private float _shootingTimer = 0;
+    [SerializeField] private float _projectileLifetime = 10;
+    public float _shootingTimer = 0;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0) && _shootingTimer <= 0)
         {
-            if (_shootingTimer <= 0)
-            {
-                _shootingTimer = _shootingRate;
-                SpawnProjectile();
-            }
-            else
-            {
-                _shootingTimer -= Time.deltaTime;
-            }
+            _shootingTimer = _shootingRate;
+            SpawnProjectile();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (_shootingTimer > 0)
         {
-            _shootingTimer = 0;
+            _shootingTimer -= Time.deltaTime;
         }
     }
 

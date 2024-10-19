@@ -4,9 +4,9 @@ public class EnemyProjectile : MonoBehaviour
 {
     [SerializeField] private int _damage;
 
-    void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        PlayerHealth playerHealth = collision.transform.GetComponent<PlayerHealth>();
+        PlayerHealth playerHealth = other.transform.GetComponent<PlayerHealth>();
         if (playerHealth)
         {
             playerHealth.DecreaseHealth(_damage);
